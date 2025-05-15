@@ -65,7 +65,7 @@ namespace ControleVendas.pt.projeto.view
         {
             menudata.Text = DateTime.Now.ToShortDateString();
             timer1.Start();
-           
+
 
             //menuutilizador.Text = log.txtemail.Text;
 
@@ -100,6 +100,12 @@ namespace ControleVendas.pt.projeto.view
             frmProdutos prod = new frmProdutos();
             prod.tabelaprodutos.SelectedTab = prod.tablistprodutos;
             prod.ShowDialog();
+        }
+
+        private void historicoDeVendasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmHistorico frm = new frmHistorico();
+            frm.ShowDialog();
         }
     }
 }

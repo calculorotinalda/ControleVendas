@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +50,36 @@ namespace ControleVendas.pt.projeto.dao
             {
 
                 MessageBox.Show("Encontrado o erro" + erro);
+            }
+        }
+
+        public DataTable ListaritensVenda(int venda_id)
+        {
+            try
+            {
+                DataTable tabelaitens = new DataTable();
+
+                string sql = @"select i.id as 'Codigo', p.descricao as 'Descricao', i.qtd as 'Quantidade', p.preco as 'Preço',
+                           i.subtotal as 'Subtotal' from tb_itensvendas as i join tb_produtos as p on (i.produto_id = p.id)
+                            where venda_id = @venda_id";
+
+                MySqlCommand executacmd = new MySqlCommand(sql, conexao);
+
+                executacmd.Parameters.AddWithValue("@venda_id", venda_id);
+
+                conexao.Open();
+                executacmd.ExecuteNonQuery();
+
+                MySqlDataAdapter query = new MySqlDataAdapter(executacmd);
+                query.Fill(tabelaitens);
+
+                return tabelaitens;
+            }
+            catch (Exception erro)
+            {
+
+                MessageBox.Show("Aconteceu o erro : " + erro);
+                return null;
             }
         }
     }

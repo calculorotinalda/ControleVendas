@@ -90,9 +90,10 @@ namespace ControleVendas.pt.projeto.dao
         {
             try
             {
-                
+
                 string sql = @"insert into tb_produtos (descricao, preco, quantidade, familia, for_id)
-                values(@descricao, @preco, @quantidade, @familia, @for_id)";
+                values(@descricao, CONVERT(REPLACE(@preco, ',', '.') using utf8mb4), @quantidade, @familia, @for_id)";
+
 
                 MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 

@@ -94,16 +94,16 @@ namespace ControleVendas.pt.projeto.view
 
         private void tabelacliente_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtcodigo.Text = tabelacliente.CurrentRow.Cells[0].Value.ToString();
-            txtnome.Text = tabelacliente.CurrentRow.Cells[1].Value.ToString();
-            txtmorada.Text = tabelacliente.CurrentRow.Cells[2].Value.ToString();
-            txtcp.Text = tabelacliente.CurrentRow.Cells[3].Value.ToString();
-            txtlocalidade.Text = tabelacliente.CurrentRow.Cells[4].Value.ToString();
-            txttelefone.Text = tabelacliente.CurrentRow.Cells[5].Value.ToString();
-            txttelemovel.Text = tabelacliente.CurrentRow.Cells[6].Value.ToString();
-            txtemail.Text = tabelacliente.CurrentRow.Cells[7].Value.ToString();
-            txtcpag.Text = tabelacliente.CurrentRow.Cells[8].Value.ToString();
-            txtmodopag.Text = tabelacliente.CurrentRow.Cells[9].Value.ToString();
+            txtcodigo.Text = tabelacliente.CurrentRow.Cells[1].Value.ToString();
+            txtnome.Text = tabelacliente.CurrentRow.Cells[2].Value.ToString();
+            txtmorada.Text = tabelacliente.CurrentRow.Cells[3].Value.ToString();
+            txtcp.Text = tabelacliente.CurrentRow.Cells[4].Value.ToString();
+            txtlocalidade.Text = tabelacliente.CurrentRow.Cells[5].Value.ToString();
+            txttelefone.Text = tabelacliente.CurrentRow.Cells[6].Value.ToString();
+            txttelemovel.Text = tabelacliente.CurrentRow.Cells[7].Value.ToString();
+            txtemail.Text = tabelacliente.CurrentRow.Cells[8].Value.ToString();
+            txtcpag.Text = tabelacliente.CurrentRow.Cells[9].Value.ToString();
+            txtmodopag.Text = tabelacliente.CurrentRow.Cells[10].Value.ToString();
 
             lista.SelectedTab = FichaCliente;
         }

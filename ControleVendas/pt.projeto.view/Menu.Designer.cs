@@ -46,6 +46,7 @@
             menucriarfuncionario = new ToolStripMenuItem();
             menulistarfuncionario = new ToolStripMenuItem();
             menuhistorico = new ToolStripMenuItem();
+            historicoDeVendasToolStripMenuItem = new ToolStripMenuItem();
             menuconfiguracoes = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             Data = new ToolStripStatusLabel();
@@ -186,10 +187,19 @@
             // 
             // menuhistorico
             // 
+            menuhistorico.DropDownItems.AddRange(new ToolStripItem[] { historicoDeVendasToolStripMenuItem });
             menuhistorico.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            menuhistorico.Image = Properties.Resources.chart_histogram;
             menuhistorico.Name = "menuhistorico";
-            menuhistorico.Size = new Size(119, 35);
+            menuhistorico.Size = new Size(139, 35);
             menuhistorico.Text = "Historico";
+            // 
+            // historicoDeVendasToolStripMenuItem
+            // 
+            historicoDeVendasToolStripMenuItem.Name = "historicoDeVendasToolStripMenuItem";
+            historicoDeVendasToolStripMenuItem.Size = new Size(305, 36);
+            historicoDeVendasToolStripMenuItem.Text = "Historico de Vendas";
+            historicoDeVendasToolStripMenuItem.Click += historicoDeVendasToolStripMenuItem_Click;
             // 
             // menuconfiguracoes
             // 
@@ -298,5 +308,6 @@
         private ToolStripStatusLabel utilizador;
         public ToolStripStatusLabel menuutilizador;
         private System.Windows.Forms.Timer timer1;
+        private ToolStripMenuItem historicoDeVendasToolStripMenuItem;
     }
 }

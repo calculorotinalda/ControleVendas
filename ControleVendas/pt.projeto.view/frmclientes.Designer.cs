@@ -441,7 +441,6 @@
         private Label lblcp;
         private TextBox txtmorada;
         private Label lblmorada;
-        private TextBox txtnome;
         private Label lblnome;
         private TextBox txtcodigo;
         private Label lblcodigo;
@@ -467,5 +466,6 @@
         public TabPage ListaClientes;
         public TabPage FichaCliente;
         public TabControl lista;
+        public TextBox txtnome;
     }
 }

@@ -59,16 +59,17 @@ namespace ControleVendas.pt.projeto.dao
             return tabelacliente;
         }
 
-        #region
+        #region Metodo Criar Clientes
         public void CriarCliente(clientes obj)
         {
             try
             {
-                string sql = @"insert into tb_clientes(nome, morada, cp, localidade, email, telefone, telemovel, Condiçao_Pagamento, Modo_Pagamento)
-                values(@nome, @morada, @cp, @localidade, @email, @telefone, @telemovel, @codpag, @modopag)";
+                string sql = @"insert into tb_clientes(codigo, nome, morada, cp, localidade, email, telefone, telemovel, Condiçao_Pagamento, Modo_Pagamento)
+                values(@codigo, @nome, @morada, @cp, @localidade, @email, @telefone, @telemovel, @codpag, @modopag)";
 
                 MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 
+                executacmd.Parameters.AddWithValue("@codigo", obj.codigo);
                 executacmd.Parameters.AddWithValue("@nome", obj.nome);
                 executacmd.Parameters.AddWithValue("@morada", obj.morada);
                 executacmd.Parameters.AddWithValue("@cp", obj.cp);
@@ -81,9 +82,9 @@ namespace ControleVendas.pt.projeto.dao
 
                 conexao.Open();
                 executacmd.ExecuteNonQuery();
-                conexao.Close() ;
+                conexao.Close();
                 ListarClientes();
-                
+
 
                 MessageBox.Show("Cliente Criado com sucesso");
             }
@@ -92,9 +93,10 @@ namespace ControleVendas.pt.projeto.dao
 
                 MessageBox.Show("Existe um erro no codigo" + erro.Message);
             }
-            
+
         }
         #endregion
+
         public void apagarClientes(clientes obj)
         {
             try
@@ -106,11 +108,11 @@ namespace ControleVendas.pt.projeto.dao
 
                 conexao.Open();
                 executacmd.ExecuteNonQuery();
-                
+
                 MessageBox.Show("Cliente apagado com sucesso");
 
                 conexao.Close();
-                
+
             }
             catch (Exception erro)
             {
@@ -122,7 +124,7 @@ namespace ControleVendas.pt.projeto.dao
         {
             try
             {
-                string sql = @"update tb_clientes set nome=@nome, morada=@morada, cp=@cp, localidade=@localidade,
+                string sql = @"update tb_clientes set codigo=@id, nome=@nome, morada=@morada, cp=@cp, localidade=@localidade,
                              email=@email, telefone=@telefone, telemovel=@telemovel, Condiçao_Pagamento=@codpag, Modo_Pagamento=@modopag where id=@id";
 
 
@@ -142,7 +144,7 @@ namespace ControleVendas.pt.projeto.dao
 
                 conexao.Open();
                 executacmd.ExecuteNonQuery();
-                
+
 
                 MessageBox.Show("Cliente editado com sucesso");
                 conexao.Close();
@@ -161,7 +163,7 @@ namespace ControleVendas.pt.projeto.dao
             {
                 string sql = "select * from tb_clientes where nome like @nome";
                 MySqlCommand executacmd = new MySqlCommand(sql, conexao);
-                
+
                 executacmd.Parameters.AddWithValue("@nome", nome);
 
 
@@ -191,10 +193,10 @@ namespace ControleVendas.pt.projeto.dao
             DataTable tabelacliente = new DataTable();
             try
             {
-                
+
                 string sql = "select * from tb_clientes where nome = @nome";
                 MySqlCommand executacmd = new MySqlCommand(sql, conexao);
-                
+
                 executacmd.Parameters.AddWithValue("@nome", nome);
 
 
@@ -236,7 +238,7 @@ namespace ControleVendas.pt.projeto.dao
                     clientes p = new clientes();
                     p.codigo = rs.GetInt32("id");
                     p.nome = rs.GetString("nome");
-                    
+
 
                     return p;
                 }

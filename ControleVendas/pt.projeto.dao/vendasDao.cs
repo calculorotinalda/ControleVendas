@@ -8,6 +8,7 @@ using ControleVendas.pt.projeto.model;
 using MySql.Data.MySqlClient;
 //using ControleVendas.pt.projeto.dao;
 using System.Diagnostics.Metrics;
+using ControleVendas.pt.projeto.view;
 
 namespace ControleVendas.pt.projeto.dao
 {
@@ -90,6 +91,67 @@ namespace ControleVendas.pt.projeto.dao
                 return 0;
             }
 
+        }
+
+        public DataTable ListarVendasPeriodo(DateTime datainicio, DateTime datafinal) 
+        {
+            try
+            {
+                DataTable tabelahistorico = new DataTable();
+
+                string sql = @"select v.id as 'Codigo', v.data_venda as 'Data da venda', c.nome as 'Cliente',
+                       v.total_venda as 'Total', v.observacoes as 'Observacoes' from tb_vendas as v
+                       join tb_clientes as c on (v.cliente_id = c.id)
+                       where v.data_venda between @datainicio and @datafinal";
+
+                MySqlCommand executacmdsql = new MySqlCommand(sql, conexao);
+
+                executacmdsql.Parameters.AddWithValue("@datainicio", datainicio);
+                executacmdsql.Parameters.AddWithValue("@datafinal", datafinal);
+
+                conexao.Open();
+                executacmdsql.ExecuteNonQuery();
+
+                MySqlDataAdapter da = new MySqlDataAdapter(executacmdsql);
+
+                da.Fill(tabelahistorico);
+
+                return tabelahistorico;
+            }
+            catch (Exception erro)
+            {
+
+                MessageBox.Show("Aconteceu o erro : " + erro);
+                return null;
+            }
+        }
+
+        public DataTable ListarVendas() 
+        {
+            try
+            {
+                DataTable tabelahistorico = new DataTable();
+
+                string sql = @"select v.id as 'Codigo', v.data_venda as 'Data da venda', c.nome as 'Cliente'
+                           , v.total_venda as 'Total', v.observacoes as 'Observacoes' from tb_vendas as v
+                           join tb_clientes as c on (v.cliente_id = c.id)";
+
+                MySqlCommand executacmdsql = new MySqlCommand(sql, conexao);
+
+                conexao.Open();
+                executacmdsql.ExecuteNonQuery();
+
+                MySqlDataAdapter d = new MySqlDataAdapter(executacmdsql);
+                d.Fill(tabelahistorico);
+
+                return tabelahistorico;
+            }
+            catch (Exception erro)
+            {
+
+                MessageBox.Show("Aconteceu o erro : " + erro);
+                return null;
+            }
         }
     }
 }
